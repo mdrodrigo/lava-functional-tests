@@ -11,8 +11,6 @@ metadata:
         - kvm
 
 install:
-    deps:
-        - wget
     git-repos:
         - git://git.linaro.org/tools/pm-qa.git
     steps:
@@ -23,4 +21,6 @@ params:
 
 run:
     steps:
+        - apt-get update -q
+        - DEBIAN_FRONTEND=noninteractive lava-test-case install-base --shell apt-get -q -y install -o Dpkg::Options::="--force-confold" wget
         - lava-test-case skip_install_$SKIPNAME-test --result pass

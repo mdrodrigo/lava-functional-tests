@@ -18,39 +18,18 @@ metadata:
 # Check the mem_cpu option in the kvm.conf device_type.
 
 install:
-    deps:
-        - git
-        - pep8
-        - lava-tool
-        - python-psycopg2
-        - postgresql-9.4
-        - postgresql-client-9.4
-        - python-dateutil
-        - python-django
-        - python-django-south
-        - python-django-tables2
-        - python-django-auth-openid
-        - python-django-auth-ldap
-        - python-django-restricted-resource
-        - python-pygments
-        - python-simplejson
-        - python-twisted
-        - django-testscenarios
-        - python-mocker
-        - python-markdown
-        - python-markupsafe
-        - python-netifaces
-        - node-uglify
     git-repos:
         - git://git.linaro.org/lava/lava-server.git
 
 run:
     steps:
+        - apt-get update -q
+        - DEBIAN_FRONTEND=noninteractive lava-test-case install-base --shell apt-get -q -y install -o Dpkg::Options::="--force-confold" git pep8 lava-tool python-psycopg2 postgresql-9.6 postgresql-client-9.6 python-dateutil python-django python-django-tables2 python-twisted python-twisted-core python-django-auth-ldap python-django-restricted-resource python-pygments python-simplejson django-testscenarios python-mocker python-markdown python-markupsafe python-netifaces node-uglify
         # fix up the hosts file before installing apache
         - echo 127.0.0.1   localhost `hostname` >> /etc/hosts
-        - lava-test-case uwsgi --shell apt -y install apache2 libapache2-mod-wsgi libapache2-mod-uwsgi
+        - lava-test-case uwsgi --shell apt-get -y install -o Dpkg::Options::="--force-confold" apache2 libapache2-mod-wsgi libapache2-mod-uwsgi
         # devscripts needs to be installed without recommended packages.
-        - lava-test-case devscripts --shell apt --no-install-recommends -y install devscripts
+        - lava-test-case devscripts --shell apt-get --no-install-recommends -y install -o Dpkg::Options::="--force-confold" devscripts
         - DEBIAN_FRONTEND=noninteractive apt-get -y install -o Dpkg::Options::="--force-confold" lava-dispatcher lava-server
         - cd lava-server
         - git checkout release

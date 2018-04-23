@@ -14,15 +14,10 @@ metadata:
         - panda
         - beaglebone-black
 
-install:
-    deps:
-        - curl
-        - lsb-release
-        - usbutils
-        - net-tools
-        - iputils-ping
 run:
     steps:
+        - apt-get update -q
+        - DEBIAN_FRONTEND=noninteractive lava-test-case install-base --shell apt-get -q -y install -o Dpkg::Options::="--force-confold" curl lsb-release usbutils net-tools iputils-ping
         - lava-test-case linux-linaro-ubuntu-netstat --shell netstat -an
         - lava-test-case linux-linaro-ubuntu-ifconfig-dump --shell ifconfig -a
         - lava-test-case linux-linaro-ubuntu-route-dump-a --shell route

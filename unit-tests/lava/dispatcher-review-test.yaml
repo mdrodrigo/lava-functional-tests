@@ -16,22 +16,13 @@ metadata:
 # Check the mem_cpu option in the kvm.conf device_type.
 
 install:
-    deps:
-        - git
-        - pep8
-        - python-lzma
-        - python-serial
-        - python-configglue
-        - python-pexpect
-        - lava-tool
-        - python-requests
-        - python-testscenarios
     git-repos:
         - git://git.linaro.org/lava/lava-dispatcher.git
 
-
 run:
     steps:
+        - apt-get update -q
+        - DEBIAN_FRONTEND=noninteractive lava-test-case install-base --shell apt-get -q -y install -o Dpkg::Options::="--force-confold" git pep8 python-lzma python-serial python-configglue python-pexpect lava-tool python-requests python-testscenarios
         - apt-get -y install -o Dpkg::Options::="--force-confold" lava-dispatcher
         - cd lava-dispatcher
         - git log -n1

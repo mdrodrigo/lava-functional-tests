@@ -15,15 +15,6 @@ metadata:
         - beaglebone-black
         - beagle-xm
 
-install:
-    deps:
-        - curl
-        - realpath
-        - lsb-release
-        - usbutils
-        - wget
-        - ntpdate
-
 # Dropped 'get_ip' and 'check_ip' as these are not able to keep up with
 # changes in the output of the relevant commands. Custom scripts are
 # needed which understand the tools within the target image.
@@ -33,6 +24,8 @@ install:
 
 run:
     steps:
+        - apt-get update -q
+        - DEBIAN_FRONTEND=noninteractive lava-test-case install-base --shell apt-get -q -y install -o Dpkg::Options::="--force-confold" curl realpath lsb-release usbutils wget ntpdate
         - lava-test-case multinode-role-output --shell lava-role
         - lava-sync running
         - lava-send sending source=$(lava-self) role=$(lava-role) hostname=$(hostname -f) kernver=$(uname -r) kernhost=$(uname -n)

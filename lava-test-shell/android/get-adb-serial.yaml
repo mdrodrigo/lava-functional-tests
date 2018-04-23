@@ -11,13 +11,8 @@ metadata:
     scope:
         - functional
 
-install:
-    deps:
-        - adb
-        - fastboot
-        - android-tools-adb
-        - android-tools-fastboot
-
 run:
     steps:
+        - apt-get update -q
+        - DEBIAN_FRONTEND=noninteractive lava-test-case install-base --shell apt-get -q -y install -o Dpkg::Options::="--force-confold" adb fastboot android-tools-adb android-tools-fastboot
         - lava-test-case adb-serial --shell "./lava-test-shell/android/scripts/get-adb-serial.sh"

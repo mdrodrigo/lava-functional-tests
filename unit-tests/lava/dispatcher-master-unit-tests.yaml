@@ -17,35 +17,14 @@ metadata:
 # Check the mem_cpu option in the kvm.conf device_type.
 
 install:
-    deps:
-        - git
-        - bc
-        - pep8
-        - python-lzma
-        - python-serial
-        - python-configglue
-        - python-pexpect
-        - lava-tool
-        - telnet
-        - python-netifaces
-        - python-requests
-        - python-testscenarios
-        - pylint
-        - u-boot-tools
-        - nfs-kernel-server
-        - tftpd-hpa
-        - qemu-system-x86
-        - python-nose
-        - python-zmq
-        - python-configobj
-        - android-tools-adb
-        - android-tools-fastboot
     git-repos:
         - git://git.linaro.org/lava/lava-dispatcher.git
 
 
 run:
     steps:
+        - apt-get update -q
+        - DEBIAN_FRONTEND=noninteractive lava-test-case install-base --shell apt-get -q -y install -o Dpkg::Options::="--force-confold" git bc pep8 python-lzma python-serial python-configglue python-pexpect lava-tool telnet python-netifaces python-requests python-testscenarios pylint u-boot-tools nfs-kernel-server tftpd-hpa qemu-system-x86 python-nose python-zmq python-configobj android-tools-adb android-tools-fastboot
         - modprobe loop || true
         - cd lava-dispatcher
         - git log -n1

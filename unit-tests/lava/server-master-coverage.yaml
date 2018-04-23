@@ -15,8 +15,6 @@ metadata:
 # dependencies must be installed by the unit-tests definition
 
 install:
-    deps:
-        - python-coverage
     git-repos:
         - git://git.linaro.org/lava/lava-server.git
 
@@ -24,6 +22,8 @@ install:
 # each test name unique and produce a valid result.
 run:
     steps:
+        - apt-get update -q
+        - DEBIAN_FRONTEND=noninteractive lava-test-case install-base --shell apt-get -q -y install -o Dpkg::Options::="--force-confold" git python-coverage
         - cd lava-server
         - git log -n1
         - ../lava/version-wrapper.py
