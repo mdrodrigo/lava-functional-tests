@@ -1,19 +1,9 @@
 metadata:
     format: Lava-Test Test Definition 1.0
     name: multinode-intermediate-level
-    description: "Intermediate (level 2) MultiNode test commands for Linux Images"
+    description: "Intermediate (level 2) MultiNode test commands for POSIX"
     maintainer:
         - neil.williams@linaro.org
-    os:
-        - ubuntu
-    scope:
-        - functional
-    devices:
-        - kvm
-        - arndale
-        - panda
-        - beaglebone-black
-        - beagle-xm
 
 # Dropped 'get_ip' and 'check_ip' as these are not able to keep up with
 # changes in the output of the relevant commands. Custom scripts are

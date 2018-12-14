@@ -4,15 +4,6 @@ metadata:
     description: "Intermediate (level 2): single node test commands for Linux Linaro ubuntu Images"
     maintainer:
         - neil.williams@linaro.org
-    os:
-        - debian
-    scope:
-        - functional
-    devices:
-        - qemu
-        - arndale
-        - panda
-        - beaglebone-black
 
 run:
     steps:

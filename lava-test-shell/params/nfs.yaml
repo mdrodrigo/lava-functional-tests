@@ -4,15 +4,6 @@ metadata:
     description: "Additional support for NFS to use DNS"
     maintainer:
         - neil.williams@linaro.org
-    os:
-        - debian
-    scope:
-        - functional
-    devices:
-        - qemu
-        - arndale
-        - panda
-        - beaglebone-black
 
 params:
     INTERFACE: eth0

@@ -4,15 +4,6 @@ metadata:
     description: "Advanced (level 3): single node test commands for Linux Images"
     maintainer:
         - neil.williams@linaro.org
-    os:
-        - debian
-    scope:
-        - functional
-    devices:
-        - qemu
-        - arndale
-        - panda
-        - beaglebone-black
 
 run:
     steps:

@@ -3,13 +3,7 @@ metadata:
     format: "Lava-Test-Shell Test Definition 1.0"
     description: "Gets the adb serial number for HiKey"
     maintainer:
-        - senthil.kumaran@linaro.org
-    os:
-        - debian
-    devices:
-        - lxc
-    scope:
-        - functional
+        - neil.williams@linaro.org
 
 run:
     steps:
