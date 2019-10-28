@@ -1,0 +1,12 @@
+metadata:
+    format: Lava-Test Test Definition 1.0
+    name: smoke-tests-net
+    description: "Basic system network test for POSIX images. The test runs basic commands like ping and ip."
+    maintainer:
+        - milosz.wasilewski@linaro.org
+
+run:
+    steps:
+        - lava-test-case linux-posix-ping --shell ping -c 4 8.8.8.8
+        - lava-test-case linux-posix-ip-addresses --shell ip addr
+        - lava-test-case linux-posix-routes --shell ip route
