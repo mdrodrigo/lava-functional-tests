@@ -9,4 +9,4 @@ run:
     steps:
         - lava-test-case linux-posix-ip-addresses --shell ip addr
         - lava-test-case linux-posix-routes --shell ip route
-        - lava-test-case linux-posix-ping --shell 'nc -vz -W 5 www.linaro.org 443 || lava-test-raise "Network not able to ping; job exit"'
+        - lava-test-case linux-posix-ping --shell 'nc -vz -w 5 www.linaro.org 443 || lava-test-raise "Network not able to ping; job exit"'
