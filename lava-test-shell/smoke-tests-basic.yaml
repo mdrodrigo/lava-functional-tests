@@ -8,6 +8,8 @@ metadata:
 
 run:
     steps:
+        - apt-get update -q
+        - apt-get install net-tools -y
         - lava-test-case linux-posix-pwd --shell pwd
         - lava-test-case linux-posix-uname --shell uname -a
         - lava-test-case linux-posix-vmstat --shell vmstat
